@@ -1,0 +1,21 @@
+[0;1;32m●[0m docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Thu 2024-11-07 12:04:37 +07; 1 weeks 4 days ago
+TriggeredBy: [0;1;32m●[0m docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1749 (dockerd)
+      Tasks: 34
+     Memory: 56.9M
+     CGroup: /system.slice/docker.service
+             └─1749 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Thg 11 18 11:45:11 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:45:11.912837074+07:00" level=error msg="failed to kill process in container id xdl4050mzgnw1757sujmdui44: runc did not terminate successfully: exit status 1: container does not exist\n"
+Thg 11 18 11:45:11 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:45:11.967692786+07:00" level=error msg="failed to kill process in container id xdl4050mzgnw1757sujmdui44: runc did not terminate successfully: exit status 1: container does not exist\n"
+Thg 11 18 11:45:12 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:45:12.021759441+07:00" level=error msg="failed to kill process in container id xdl4050mzgnw1757sujmdui44: runc did not terminate successfully: exit status 1: container does not exist\n"
+Thg 11 18 11:45:12 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:45:12.076889063+07:00" level=warning msg="failed to read oom_kill event" error="open /sys/fs/cgroup/docker/buildkit/xdl4050mzgnw1757sujmdui44/memory.events: no such file or directory" span="[3/7] RUN pip3 install --no-cache-dir     tensorflow==2.13.0     tensorflow-probability==0.21.0     onnx==1.15.0     onnx-tf==1.10.0     numpy     protobuf" spanID=ca23ccd06a426d81 traceID=42ac3f2b5a135d7b0b3bcfee0ed56f3c
+Thg 11 18 11:45:12 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:45:12.108969513+07:00" level=error msg=/moby.buildkit.v1.Control/Solve error="rpc error: code = Unknown desc = failed to compute cache key: failed to calculate checksum of ref 3f3a7111-8f2e-4dc6-8507-f52fa51eb175::yu7ithzaa6439nwcvgdus99dv: \"/your_model.onnx\": not found" spanID=d52f589e7d8d4822 traceID=42ac3f2b5a135d7b0b3bcfee0ed56f3c
+Thg 11 18 11:50:22 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:50:22.311554741+07:00" level=info msg="ignoring event" container=cfe6beb5b6d98c41901d25abdeff4725f376f615fc075910639f57506a321977 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Thg 11 18 11:50:22 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T11:50:22.317506422+07:00" level=warning msg="failed to close stdin: NotFound: task cfe6beb5b6d98c41901d25abdeff4725f376f615fc075910639f57506a321977 not found: not found"
+Thg 11 18 13:31:48 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T13:31:48.231046314+07:00" level=info msg="ignoring event" container=c4bd60c56e172df5ae77d1d73bf42b016ae34683f6e5cf42ba0b62524e3ad513 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Thg 11 18 13:31:48 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T13:31:48.239661760+07:00" level=warning msg="failed to close stdin: NotFound: task c4bd60c56e172df5ae77d1d73bf42b016ae34683f6e5cf42ba0b62524e3ad513 not found: not found"
+Thg 11 18 13:32:34 dover-Z690-AERO-G dockerd[1749]: time="2024-11-18T13:32:34.448615565+07:00" level=error msg="Handler for POST /v1.47/containers/create returned error: invalid volume specification: '/home/dover/PycharmProjects/Sprint4/prep/save_models:save_models': invalid mount config for type \"bind\": invalid mount path: 'save_models' mount path must be absolute" spanID=9d59912e7f2609e5 traceID=34387b587574d6044d51338500235e82

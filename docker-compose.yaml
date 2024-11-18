@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  hyratek-stable-diffusion:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - PYTHONPATH=/hyratek-stable-diffusion
+    volumes:
+      - ./models:/hyratek-stable-diffusion/models
+      - ./generated_images:/hyratek-stable-diffusion/generated_images
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+   
