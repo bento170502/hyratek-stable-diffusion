@@ -1,56 +1,39 @@
-# docker/Dockerfile
-FROM nvidia/cuda:11.3.1-base-ubuntu20.04
+# Sử dụng base image từ NVIDIA CUDA
+FROM nvidia/cuda:11.8.0-runtime-ubuntu20.04
 
-# Avoid warnings by switching to noninteractive
+# Thiết lập biến môi trường để tránh prompt trong apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Set working directory
-WORKDIR /hyratek-stable-diffusion
-
-# Install system dependencies
+# Cập nhật hệ thống và cài đặt các công cụ cần thiết
 RUN apt-get update && apt-get install -y \
-    git \
     wget \
     bzip2 \
-    ca-certificates \
     curl \
-    python3-dev \
-    build-essential \
-    pkg-config \
+    git \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Miniconda
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
-    bash miniconda.sh -b -p /opt/conda && \
-    rm miniconda.sh
+# Tải và cài đặt Anaconda
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2023.07-1-Linux-x86_64.sh -O /tmp/anaconda.sh && \
+    bash /tmp/anaconda.sh -b -p /opt/conda && \
+    rm /tmp/anaconda.sh
 
-# Add conda to path
-ENV PATH=/opt/conda/bin:$PATH
+# Thêm Anaconda vào PATH
+ENV PATH="/opt/conda/bin:$PATH"
 
-# Copy environment file
-COPY environment.yaml .
+# Copy toàn bộ thư mục hiện tại vào container
+WORKDIR /workspace
+COPY . .
 
-# Create conda environment and clean up
-RUN conda env create -f environment.yaml && \
-    conda clean -a -y && \
-    conda run -n ldm pip cache purge
+# Cài đặt môi trường từ file environment.yaml
+RUN conda env create -f environment.yaml
 
-# Make RUN commands use the new environment
-SHELL ["conda", "run", "-n", "ldm", "/bin/bash", "-c"]
+# Kích hoạt môi trường khi container chạy
+ENV CONDA_DEFAULT_ENV=my_env
+ENV PATH="/opt/conda/envs/my_env/bin:$PATH"
 
-# Copy the package files
-COPY . /HyratekSD/
-
-
-# Make directory for models and outputs
-RUN mkdir -p /HyratekSD/generated_images
-
-# Set entrypoint script
-RUN chmod +x /HyratekSD/entrypoint.sh
-
-# Set environment variables
-
-# # Activate conda environment by default
-# RUN echo "conda activate ldm" >> ~/.bashrc
-
-# ENTRYPOINT ["/hyratek-stable-diffusion/docker/entrypoint.sh"]
+# Đặt shell mặc định là bash và kích hoạt môi trường Conda
+SHELL ["conda", "run", "-n", "my_env", "/bin/bash", "-c"]
