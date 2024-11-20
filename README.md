@@ -15,11 +15,10 @@ mkdir -p models/ldm/stable-diffusion-v1/
 # How to run
 
 * Python
-# In Python shell:
 ```bash
 from HyratekSD.hyratek_sd import HyratekSD
 ```
-# Initialize
+Initialize
 ```bash
 sd = HyratekSD(
     model_path="models/ldm/stable-diffusion-v1/model.ckpt",
