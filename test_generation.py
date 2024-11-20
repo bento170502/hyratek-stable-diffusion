@@ -2,9 +2,13 @@ from HyratekSD.hyratek_sd import HyratekStableDiffusion
 import os
 
 def main():
+
+    rootDir = os.path.dirname(os.path.abspath(__file__))
+
     # Initialize the generator with custom settings
     sd = HyratekStableDiffusion(
-        model_path="models/ldm/stable-diffusion-v1/model.ckpt",
+        model_path=os.path.join(rootDir, "models/ldm/stable-diffusion-v1/model.ckpt"),
+        config_path=os.path.join(rootDir, "configs/stable-diffusion/v1-inference.yaml"),
         height=512,
         width=512,
         num_steps=75,
@@ -18,7 +22,7 @@ def main():
     # Test single image generation
     print("Generating single image...")
     images = sd.infer(
-        prompt=" lion in the jungle",
+        prompt="a king of lions is around animals",
         num_images=1,
         seed=42
     )

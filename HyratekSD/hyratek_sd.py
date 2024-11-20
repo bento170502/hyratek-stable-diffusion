@@ -8,6 +8,7 @@ class HyratekStableDiffusion:
     def __init__(
         self,
         model_path: str,
+        config_path: str,
         height: int = 512,
         width: int = 512,
         num_steps: int = 50,
@@ -34,6 +35,7 @@ class HyratekStableDiffusion:
         # Initialize generator
         self.generator = StableDiffusionGenerator(
             model_path=model_path,
+            config_path=config_path,
             device=device
         )
         
