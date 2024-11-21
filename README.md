@@ -35,9 +35,11 @@ images = sd.infer(
     prompt="a beautiful mountain landscape at sunset",
     num_images=1
 )
+```
 ```bash
 python test_generation.py
 ```
+
 * Docker
 ```bash
 docker-compose run --rm hyratek-stable-diffusion python tests/test_generation.py
