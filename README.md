@@ -1,16 +1,20 @@
 # Description
 
 # Install
+*Docker
 ```bash
 docker-compose build
 ```
-Download the Stable Diffusion model checkpoint and place it in the correct directory:
-
+*Conda
+Environment Setup Create and activate the ldm environment:
 ```bash
-# Create model directory
+conda env create -f environment.yaml
+conda activate ldm
+```
+Create model directory, Link the weights in the specified directory:
+```bash
 mkdir -p models/ldm/stable-diffusion-v1/
-# Place your model.ckpt file in this directory
-# models/ldm/stable-diffusion-v1/model.ckpt
+ln -s <path/to/model.ckpt> models/ldm/stable-diffusion-v1/model.ckpt
 ```
 # How to run
 
@@ -31,6 +35,8 @@ images = sd.infer(
     prompt="a beautiful mountain landscape at sunset",
     num_images=1
 )
+```bash
+python test_generation.py
 ```
 * Docker
 ```bash
