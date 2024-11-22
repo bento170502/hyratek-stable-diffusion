@@ -7,7 +7,7 @@ def main():
 
     # Initialize the generator with custom settings
     sd = HyratekStableDiffusion(
-        model_path=os.path.join(rootDir, "models/ldm/stable-diffusion-v1/model.ckpt"),
+        model_path=os.path.join(rootDir, "model/model.ckpt"),
         config_path=os.path.join(rootDir, "configs/stable-diffusion/v1-inference.yaml"),
         height=512,
         width=512,

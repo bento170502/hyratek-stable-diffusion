@@ -1,0 +1,1 @@
+from HyratekSD.ldm.modules.losses.contperceptual import LPIPSWithDiscriminator

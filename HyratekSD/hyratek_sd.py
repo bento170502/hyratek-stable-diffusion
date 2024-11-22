@@ -1,7 +1,7 @@
 # HyratekSD/hyratek_sd.py
 from typing import List, Optional
 from PIL import Image
-from module.generator import StableDiffusionGenerator, GenerationConfig
+from HyratekSD.module import StableDiffusionGenerator, GenerationConfig
 
 class HyratekStableDiffusion:
     
